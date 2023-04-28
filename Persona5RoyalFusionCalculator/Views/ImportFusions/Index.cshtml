@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Import Fusions";
+}
+
+@await Component.InvokeAsync("NavigationBar")
+<br />
+
+@using (Html.BeginForm("Index", "ImportFusions", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="container">
+        <div class="mb-3 mt-3">
+            <input type="file" id="inPersonasFile" name="inPersonasFile"> <br />
+            <input type="submit" id="addButton" name="addButton" value="+Add"> <br />
+            <label text="@ViewBag.Message" class="errormessage" />
+        </div>
+    </div>
+}
