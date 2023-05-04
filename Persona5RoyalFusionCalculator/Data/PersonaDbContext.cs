@@ -10,7 +10,7 @@ namespace Persona5RoyalFusionCalculator.Data
         {
 
         }
-
+        public DbSet<GameModel> Games { get; set; }
         public DbSet<FusionModel> Fusions { get; set; }
         public DbSet<PersonaModel> Personas { get; set; }
     }

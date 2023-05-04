@@ -1,0 +1,8 @@
+﻿@model List<GameModel>
+
+<select name="inGameID" id="gamesList">
+    @foreach (var game in Model)
+    {
+        <option value="@game.ID">@game.Name</option>
+    }
+</select>

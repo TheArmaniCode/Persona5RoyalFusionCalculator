@@ -1,0 +1,11 @@
+﻿@model Persona5RoyalFusionCalculator.Models.GameModel
+
+@{
+    ViewData["Title"] = @Model.Name;
+}
+
+@await Component.InvokeAsync("NavigationBar")
+
+<header style="background-color: @Model.Color">
+    <h1>@Model.Name</h1>
+</header>

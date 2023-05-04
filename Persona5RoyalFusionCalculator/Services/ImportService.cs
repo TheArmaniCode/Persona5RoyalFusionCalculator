@@ -24,29 +24,30 @@ namespace Persona5RoyalFusionCalculator.Services
             var wb =  new XLWorkbook(inFile.OpenReadStream());
             var ws = wb.Worksheet(1);
             var r = 1;
-            string persona1, persona2, persona3, result;
+            string cellValue;
+            int persona1 = 0, persona2 = 0, persona3 = 0, result = 0;
             var last = ws.Cells().LastOrDefault();
 
             foreach(var cell in ws.Cells())
             {
-                result = cell.GetValue<string>();
-                if (result != "")
+                cellValue = cell.GetValue<string>();
+                if (cellValue != "")
                 {
                     if (inGameID == 2)
                     {
                         switch (r % 4)
                         {
                             case 1:
-                                persona1 = _personaService.GetPersonaByName(result, inGameID).Name;
+                                persona1 = _personaService.GetPersonaByName(cellValue, inGameID).Id;
                                 break;
                             case 2:
-                                persona2 = _personaService.GetPersonaByName(result, inGameID).Name;
+                                persona2 = _personaService.GetPersonaByName(cellValue, inGameID).Id;
                                 break;
                             case 3:
-                                persona3 = _personaService.GetPersonaByName(result, inGameID).Name;
+                                persona3 = _personaService.GetPersonaByName(cellValue, inGameID).Id;
                                 break;
                             case 0:
-                                result = _personaService.GetPersonaByName(result, inGameID).Name;
+                                result = _personaService.GetPersonaByName(cellValue, inGameID).Id;
                                 break;
                         }
                     }
@@ -56,15 +57,17 @@ namespace Persona5RoyalFusionCalculator.Services
                         switch (r % 3)
                         {
                             case 1:
-                                persona1 = _personaService.GetPersonaByName(result, inGameID).Name;
+                                persona1 = _personaService.GetPersonaByName(cellValue, inGameID).Id;
                                 break;
                             case 2:
-                                persona2 = _personaService.GetPersonaByName(result, inGameID).Name;
+                                persona2 = _personaService.GetPersonaByName(cellValue, inGameID).Id;
                                 break;
                             case 0:
-                                result = _personaService.GetPersonaByName(result, inGameID).Name;
+                                result = _personaService.GetPersonaByName(cellValue, inGameID).Id;
                                 break;
                         }
+
+                        _fusionService.AddFusion(persona1, persona2, result, inGameID);
                     }
 
                     r++;

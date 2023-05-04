@@ -24,18 +24,26 @@ namespace Persona5RoyalFusionCalculator.Controllers
         [HttpPost]
         public IActionResult Index(IFormFile inPersonasFile, int inGameID)
         {
-            try
+            if(inGameID != 0)
             {
-                if (inPersonasFile.Length > 0)
+                try
                 {
-                    _importService.ImportFusions(inPersonasFile, inGameID);
+                    if (inPersonasFile.Length > 0)
+                    {
+                        _importService.ImportFusions(inPersonasFile, inGameID);
+                    }
+                    ViewBag.Message = "File Uploaded Successfully!!";
+                    return View();
                 }
-                ViewBag.Message = "File Uploaded Successfully!!";
-                return View();
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "Upload failed";
+                    return View();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                ViewBag.Message = "Upload failed";
+                ViewBag.Message = "Please select a game";
                 return View();
             }
         }

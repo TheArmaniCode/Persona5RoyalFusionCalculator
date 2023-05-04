@@ -3,20 +3,19 @@ using Persona5RoyalFusionCalculator.Interfaces;
 
 namespace Persona5RoyalFusionCalculator.ViewComponents
 {
-    public class NavigationBarViewComponent : ViewComponent
+    public class GameListViewComponent : ViewComponent
     {
         private readonly IGameService _gameService;
 
-        public NavigationBarViewComponent(IGameService gameService)
+        public GameListViewComponent(IGameService gameService)
         {
             _gameService = gameService;
         }
-
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var games = _gameService.GetGames();
+            var gameList = _gameService.GetGames();
 
-            return View(games);
+            return View(gameList);
         }
     }
 }

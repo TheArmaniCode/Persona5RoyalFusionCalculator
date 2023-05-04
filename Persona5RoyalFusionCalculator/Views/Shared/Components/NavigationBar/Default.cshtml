@@ -1,3 +1,7 @@
-﻿<a href='@Url.Action("Index","ImportFusions")' class="btn button"> Import Fusions</a>
-<a href='@Url.Action("Index","Persona4")' class="btn button"> Persona 4 Golden</a>
-<a href='@Url.Action("Index","Persona5")' class="btn button"> Persona 5 Royal</a>
+﻿@model List<GameModel>
+
+<a href='@Url.Action("Index","ImportFusions")' class="btn button"> Import Fusions</a>
+@foreach (var game in @Model)
+{
+    <a href='@Url.Action("Index","GameFusions", new { inGameID = game.ID})' class="btn button">@game.Name</a>
+}

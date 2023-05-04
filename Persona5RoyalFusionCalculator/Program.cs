@@ -17,6 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 builder.Services.AddDbContext<PersonaDbContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddSession();
 
+builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<IFusionService, FusionService>();
 builder.Services.AddScoped<IImportService, ImportService>();
 builder.Services.AddScoped<IPersonaService, PersonaService>();
